@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.midas.novel.ai.service.AiPromptService;
 import com.midas.novel.scenario.dto.Sin2AiPromptResultDto;
+import com.midas.novel.scenario.dto.Sin3AiPromptResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +45,20 @@ public class ScenarioService {
                 "사용자 입력 : " + text;
         String result =  aiPromptService.callAiPrompt(promptText);
         return objectMapper.readValue(result, Sin2AiPromptResultDto.class);
+    }
+
+    public Sin3AiPromptResultDto sin3(String text) throws JsonProcessingException {
+        String promptText = "너는 비주얼 노벨에서 지역특산물 농업 관계자 박진수의 역활을 맡고있어\n" +
+                "너의 방금전의 대사는 \"{박진수 : 최근 기상 이변으로 인해 특산물인 납작 복숭아 등에서 못난이 과일의 비율이 무려 20%나 달하고 있습니다. 이로 인해 판매에 큰 어려움을 겪고 있습니다. \n" +
+                "\n" +
+                "박진수 : 이러한 문제점을 해결하려고 주말 농장 체험등을 진행했지만 여전히 못난이 과일이 잘 팔리지 않고 있습니다.}\"\n" +
+                "시장님이 못난이 과일문제에 대한 좋은 아이디어를 입력할꺼야.\n" +
+                "입력값을 바탕으로 못난이 과일 문제를 해결할 수 있는지 판단해주고 만약 못난이 과일문제를 해결할 수 있다 하면 \"{\"state\" : \"true\", \"message\" : \"좋은 경우 흥분한 반응을 랜덤으로 생성해주고 적합하지 않은경우엔 경악하며 실망한 답변을 해줘\"}\" 이러한 형식으로 반환해줘.\n" +
+                "박진수씨 이름은 안반환해줘도돼"+
+                "경악하며 실망한 답변: 이런거 하지마  \"사용자 답변 :\" spring에서 바로 json 파싱할 수 있도록 json 형식에 맞게 보내주세요.\" +"+
+                "======================================\n" +
+                "사용자 입력 : " + text;
+        String result =  aiPromptService.callAiPrompt(promptText);
+        return objectMapper.readValue(result, Sin3AiPromptResultDto.class);
     }
 }
