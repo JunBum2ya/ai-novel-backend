@@ -1,4 +1,4 @@
-package com.midas.novel.scenario.dto.request;
+package com.midas.novel.scenario.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
