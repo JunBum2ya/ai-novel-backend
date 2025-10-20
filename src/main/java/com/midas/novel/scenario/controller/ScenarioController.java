@@ -5,6 +5,7 @@ import com.midas.novel.scenario.dto.Sin2AiPromptResultDto;
 import com.midas.novel.scenario.dto.Sin3AiPromptResultDto;
 import com.midas.novel.scenario.dto.request.Sin2Request;
 import com.midas.novel.scenario.dto.request.Sin3Request;
+import com.midas.novel.scenario.dto.request.Sin4Request;
 import com.midas.novel.scenario.dto.request.TextRequest;
 import com.midas.novel.scenario.service.ScenarioService;
 import com.midas.novel.common.dto.response.CommonResponse;
@@ -41,6 +42,12 @@ public class ScenarioController {
     public ResponseEntity<CommonResponse<Sin3AiPromptResultDto>> sin3(@Valid @RequestBody Sin3Request request) throws Exception {
         Sin3AiPromptResultDto sin3AiPromptResultDto = scenarioService.sin3(request.getText());
         return ResponseEntity.ok(CommonResponse.success(sin3AiPromptResultDto));
+    }
+
+    @GetMapping("/sin4")
+    public ResponseEntity<CommonResponse<String>> sin4(@Valid Sin4Request request) throws Exception {
+        String url = scenarioService.sin4(request.getSin1(), request.getSin2(), request.getSin3());
+        return ResponseEntity.ok(CommonResponse.success(url));
     }
 
 }

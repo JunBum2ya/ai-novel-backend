@@ -13,12 +13,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScenarioService {
     private final AiPromptService aiPromptService;
-    private final ObjectMapper objectMapper;
 
     @Autowired
     public ScenarioService(AiPromptService aiPromptService, ObjectMapper objectMapper) {
         this.aiPromptService = aiPromptService;
-        this.objectMapper = objectMapper;
     }
 
     public String sin1(String text) {
@@ -78,5 +76,10 @@ public class ScenarioService {
         }else {
             throw new CustomException(CustomExceptionType.SERVER_ERROR.getCode(), "AI 프롬프트 오류");
         }
+    }
+
+    public String sin4(String sin1, String sin2, String sin3) throws Exception {
+        String url = aiPromptService.callAiImagePrompt(sin1);
+        return url;
     }
 }
