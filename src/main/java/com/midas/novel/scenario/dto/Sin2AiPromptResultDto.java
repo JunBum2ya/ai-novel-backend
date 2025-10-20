@@ -1,31 +1,21 @@
 package com.midas.novel.scenario.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class Sin2AiPromptResultDto {
     private boolean state;
     private String message;
 
-    public Sin2AiPromptResultDto() {}
-
-    @JsonProperty("state")
-    public boolean isState() {
-        return state;
-    }
-
-    public void setState(boolean state) {
+    @Builder
+    public Sin2AiPromptResultDto(boolean state, String message) {
         this.state = state;
-    }
-
-    @JsonProperty("message")
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
         this.message = message;
     }
 }

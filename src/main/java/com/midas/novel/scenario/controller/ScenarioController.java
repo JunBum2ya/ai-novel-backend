@@ -25,20 +25,20 @@ public class ScenarioController {
         this.scenarioService = scenarioService;
     }
 
-    @GetMapping("/sin1")
-    public ResponseEntity<CommonResponse<String>> sin1(@Valid TextRequest request) throws CustomException {
+    @PostMapping("/sin1")
+    public ResponseEntity<CommonResponse<String>> sin1(@Valid @RequestBody TextRequest request) throws CustomException {
         String result = scenarioService.sin1(request.getText());
         return ResponseEntity.ok(CommonResponse.success(result));
     }
 
-    @GetMapping("/sin2")
-    public ResponseEntity<CommonResponse<Sin2AiPromptResultDto>> sin2(@Valid Sin2Request request) throws JsonProcessingException {
+    @PostMapping("/sin2")
+    public ResponseEntity<CommonResponse<Sin2AiPromptResultDto>> sin2(@Valid @RequestBody Sin2Request request) throws Exception {
         Sin2AiPromptResultDto sin2AiPromptResultDto = scenarioService.sin2(request.getProblem(), request.getText());
         return ResponseEntity.ok(CommonResponse.success(sin2AiPromptResultDto));
     }
 
-    @GetMapping("/sin3")
-    public ResponseEntity<CommonResponse<Sin3AiPromptResultDto>> sin3(@Valid Sin3Request request) throws JsonProcessingException {
+    @PostMapping("/sin3")
+    public ResponseEntity<CommonResponse<Sin3AiPromptResultDto>> sin3(@Valid @RequestBody Sin3Request request) throws Exception {
         Sin3AiPromptResultDto sin3AiPromptResultDto = scenarioService.sin3(request.getText());
         return ResponseEntity.ok(CommonResponse.success(sin3AiPromptResultDto));
     }
